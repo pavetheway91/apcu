@@ -88,7 +88,7 @@ PHP_APCU_API int _apc_register_serializer(
 	return 0;
 }
 
-PHP_APCU_API apc_serializer_t* apc_get_serializers()  {
+PHP_APCU_API apc_serializer_t* apc_get_serializers(void)  {
 	return &(apc_serializers[0]);
 }
 

@@ -26,11 +26,11 @@
  */
 
 #ifdef PHP_WIN32
-PHP_APCU_API zend_bool apc_lock_init() {
+PHP_APCU_API zend_bool apc_lock_init(void) {
 	return 1;
 }
 
-PHP_APCU_API void apc_lock_cleanup() {
+PHP_APCU_API void apc_lock_cleanup(void) {
 }
 
 PHP_APCU_API zend_bool apc_lock_create(apc_lock_t *lock) {
@@ -66,7 +66,7 @@ PHP_APCU_API void apc_lock_destroy(apc_lock_t *lock) {
 static zend_bool apc_lock_ready = 0;
 static pthread_rwlockattr_t apc_lock_attr;
 
-PHP_APCU_API zend_bool apc_lock_init() {
+PHP_APCU_API zend_bool apc_lock_init(void) {
 	if (apc_lock_ready) {
 		return 1;
 	}
@@ -81,7 +81,7 @@ PHP_APCU_API zend_bool apc_lock_init() {
 	return 1;
 }
 
-PHP_APCU_API void apc_lock_cleanup() {
+PHP_APCU_API void apc_lock_cleanup(void) {
 	if (!apc_lock_ready) {
 		return;
 	}
@@ -121,7 +121,7 @@ PHP_APCU_API void apc_lock_destroy(apc_lock_t *lock) {
 static zend_bool apc_lock_ready = 0;
 static pthread_mutexattr_t apc_lock_attr;
 
-PHP_APCU_API zend_bool apc_lock_init() {
+PHP_APCU_API zend_bool apc_lock_init(void) {
 	if (apc_lock_ready) {
 		return 1;
 	}
@@ -139,7 +139,7 @@ PHP_APCU_API zend_bool apc_lock_init() {
 	return 1;
 }
 
-PHP_APCU_API void apc_lock_cleanup() {
+PHP_APCU_API void apc_lock_cleanup(void) {
 	if (!apc_lock_ready) {
 		return;
 	}
@@ -214,11 +214,11 @@ static int apc_lock_release(apc_lock_t *lock) {
 	return !released;
 }
 
-PHP_APCU_API zend_bool apc_lock_init() {
+PHP_APCU_API zend_bool apc_lock_init(void) {
 	return 0;
 }
 
-PHP_APCU_API void apc_lock_cleanup() {
+PHP_APCU_API void apc_lock_cleanup(void) {
 }
 
 PHP_APCU_API zend_bool apc_lock_create(apc_lock_t *lock) {
@@ -270,11 +270,11 @@ static int apc_fcntl_call(int fd, int cmd, int type, off_t offset, int whence, o
 	return(ret);
 }
 
-PHP_APCU_API zend_bool apc_lock_init() {
+PHP_APCU_API zend_bool apc_lock_init(void) {
 	return 0;
 }
 
-PHP_APCU_API void apc_lock_cleanup() {
+PHP_APCU_API void apc_lock_cleanup(void) {
 }
 
 PHP_APCU_API zend_bool apc_lock_create(apc_lock_t *lock) {

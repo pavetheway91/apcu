@@ -22,7 +22,7 @@
 static zend_bool apc_mutex_ready = 0;
 static pthread_mutexattr_t apc_mutex_attr;
 
-PHP_APCU_API zend_bool apc_mutex_init() {
+PHP_APCU_API zend_bool apc_mutex_init(void) {
 	if (apc_mutex_ready) {
 		return 1;
 	}
@@ -39,7 +39,7 @@ PHP_APCU_API zend_bool apc_mutex_init() {
 	return 1;
 }
 
-PHP_APCU_API void apc_mutex_cleanup() {
+PHP_APCU_API void apc_mutex_cleanup(void) {
 	if (!apc_mutex_ready) {
 		return;
 	}

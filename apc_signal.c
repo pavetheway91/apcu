@@ -146,7 +146,7 @@ static int apc_register_signal(int signo, void (*handler)(int, siginfo_t*, void*
 }
 
 /* Install our signal handlers */
-void apc_set_signals()
+void apc_set_signals(void)
 {
 	if (apc_signal_info.installed == 0) {
 #if defined(SIGUSR1) && defined(APC_CLEAR_SIGNAL)
@@ -191,7 +191,7 @@ void apc_set_signals()
 }
 
 /* Cleanup signals for shutdown */
-void apc_shutdown_signals()
+void apc_shutdown_signals(void)
 {
 	int i=0;
 	if (apc_signal_info.installed > 0) {
